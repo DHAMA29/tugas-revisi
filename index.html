@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ATLAS-SERVICE CONTAINERS</title>
+    <meta name="description" content="Simple landind page" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <!--Replace with your tailwind.css once created-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+      rel="stylesheet"
+    />
+    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <style>
+      /* Universal reset to eliminate navigation gaps only */
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+      }
+
+      /* Reset margins for top-level containers only */
+      .top-nav,
+      #header,
+      nav {
+        margin: 0 !important;
+      }
+
+      :root {
+        --ugm-primary: #2a9d8f;
+        --ugm-secondary: #61ce70;
+        --ugm-accent: #fdcb2c;
+        --ugm-dark: #2a2a31;
+        --ugm-light: #f8f9fa;
+        --text-primary: #333;
+        --text-secondary: #666;
+        --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+        --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .gradient {
+        background: linear-gradient(
+          135deg,
+          var(--ugm-primary) 0%,
+          var(--ugm-secondary) 100%
+        );
+      }
+
+      .bg-ugm-blue {
+        background-color: var(--ugm-primary);
+      }
+
+      .btn-primary {
+        background-color: var(--ugm-accent);
+        color: var(--ugm-dark);
+        font-weight: 600;
+        border: none;
+        box-shadow: var(--shadow-light);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #e6b829;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+      }
+
+      /* Reset default margins and ensure no gaps */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none;
+        outline: none;
+      }
+
+      /* Ensure no browser default spacing */
+      body {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+
+      /* Top navigation styles - seamless integration */
+      /* .top-nav class is no longer needed and will be removed */
+
+      /* Main navigation - follows scroll */
+      #header {
+        position: fixed !important;
+        top: 0; /* Set to 0 to remove the gap */
+        left: 0;
+        right: 0;
+        z-index: 60;
+        background: linear-gradient(
+          135deg,
+          var(--ugm-primary) 0%,
+          var(--ugm-secondary) 100%
+        );
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      #header.scrolled {
+        background: rgba(42, 157, 143, 0.95);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .top-nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      .top-nav-list {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        flex-wrap: wrap;
+      }
+
+      .top-nav-list li {
+        margin: 0 5px;
+      }
+
+      .top-nav-list a {
+        text-decoration: none;
+        color: var(--text-primary);
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .top-nav-list a:hover {
+        background-color: var(--ugm-primary);
+        color: white;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 8px;
+        color: var(--text-primary);
+      }
+
+      /* Hero section improvements */
+      .hero-title {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-image {
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        /* Remove all transitions that might cause display issues */
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .top-nav-list {
+          flex-direction: column;
+          align-items: flex-start;
+          display: none;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.98);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 10px 0;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-nav-list.show {
+          display: flex;
+        }
+
+        .top-nav-list li {
+          margin: 5px 0;
+          width: 100%;
+        }
+
+        .top-nav-list a {
+          display: block;
+          width: 100%;
+          padding: 12px 20px;
+        }
+
+        .mobile-menu-toggle {
+          display: block;
+        }
+
+        .hero-title {
+          font-size: 2.5rem !important;
+        }
+
+        /* Ensure mobile nav doesn't overlap content */
+        .hero-section {
+          padding-top: 140px !important;
+        }
+
+        /* Better spacing for mobile */
+        .container {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2rem !important;
+        }
+
+        .top-nav-container {
+          padding: 0 15px;
+        }
+
+        /* Extra small screens adjustments */
+        .hero-section {
+          padding-top: 160px !important;
+          margin-top: 80px !important;
+        }
+
+        /* Prevent horizontal scroll on small devices */
+        body {
+          overflow-x: hidden;
+        }
+
+        /* Mobile spacing adjustments */
+      }
+
+      /* Additional professional touches */
+      .text-ugm-primary {
+        color: var(--ugm-primary);
+      }
+
+      .border-ugm-primary {
+        border-color: var(--ugm-primary);
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Prevent layout shifts */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* Ensure proper navigation layering */
+      #nav-content.hidden {
+        display: none !important;
+      }
+
+      #nav-content {
+        transition: all 0.3s ease;
+      } /* Focus states for accessibility */
+      button:focus,
+      a:focus {
+        outline: 2px solid var(--ugm-accent);
+        outline-offset: 2px;
+      }
+
+      /* Loading animation for images */
+      img {
+        transition: opacity 0.3s ease;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--ugm-primary);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #248a7d;
+      }
+
+      /* Professional Animations & Interactions */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Simplified animations - remove float and pulse */
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in-left {
+        animation: fadeInLeft 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in-right {
+        animation: fadeInRight 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      /* Delay classes for staggered animations */
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+      .delay-500 {
+        animation-delay: 0.5s;
+      }
+      .delay-600 {
+        animation-delay: 0.6s;
+      }
+
+      /* Removed floating shapes to fix image display issues */
+
+      /* Simplified hover effects */
+      .hover-lift {
+        transition: transform 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-3px);
+      }
+
+      /* Typewriter effect */
+      .typewriter {
+        overflow: hidden;
+        border-right: 0.15em solid #fdcb2c;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #fdcb2c;
+        }
+      }
+
+      /* Simplified service styles */
+      .service-item {
+        transition: transform 0.3s ease;
+      }
+
+      .service-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .service-item svg {
+        transition: all 0.3s ease;
+      }
+
+      .service-item:hover svg {
+        transform: scale(1.1);
+      }
+
+      /* Statistics section */
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--ugm-accent);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Simplified news styles */
+      .news-item {
+        transition: all 0.3s ease;
+      }
+
+      .news-item:hover {
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="leading-normal tracking-normal text-white gradient"
+    style="font-family: 'Source Sans Pro', sans-serif; margin: 0; padding: 0"
+  >
+    <!-- The .top-nav element is removed -->
+    <!--Nav-->
+    <nav
+      id="header"
+      class="fixed w-full z-50 text-white transition-all duration-300 ease-in-out"
+    >
+      <div
+        class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-3"
+      >
+        <div class="pl-4 flex items-center space-x-8">
+          <a
+            class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex items-center"
+            href="#"
+          >
+            <!--Icon from: http://www.potlabicons.com/ -->
+            <svg
+              class="h-8 fill-current inline"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512.005 512.005"
+            >
+              <rect
+                fill="#2a2a31"
+                x="16.539"
+                y="425.626"
+                width="479.767"
+                height="50.502"
+                transform="matrix(1,0,0,1,0,0)"
+              />
+              <path
+                class="plane-take-off"
+                d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z "
+              />
+            </svg>
+            <span>ATLAS</span>
+          </a>
+          <!-- Link disamping logo ATLAS -->
+          <div class="hidden md:flex space-x-6">
+            <a
+              class="nav-link text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+              href="https://ugm.ac.id"
+              target="_blank"
+              >Tentang UGM</a
+            >
+            <a
+              class="nav-link text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+              href="#"
+              onclick="scrollToSection('services')"
+              >Layanan</a
+            >
+            <a
+              class="nav-link text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+              href="#"
+              onclick="scrollToSection('news')"
+              >Berita</a
+            >
+          </div>
+        </div>
+        <div class="block lg:hidden pr-4 relative">
+          <button
+            id="nav-toggle"
+            class="flex items-center p-1 text-white hover:text-yellow-300 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out z-50"
+          >
+            <svg
+              class="fill-current h-6 w-6"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-ugm-primary lg:bg-transparent text-white p-4 lg:p-0 z-40 rounded-lg lg:rounded-none absolute lg:relative top-full lg:top-auto left-0 lg:left-auto right-0 lg:right-auto"
+          id="nav-content"
+        >
+          <ul
+            class="list-reset lg:flex justify-end flex-1 items-center md:hidden"
+          >
+            <li class="mr-3">
+              <a
+                class="nav-link inline-block py-2 px-4 text-white lg:text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+                href="https://ugm.ac.id"
+                target="_blank"
+                >Tentang UGM</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="nav-link inline-block py-2 px-4 text-white lg:text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+                href="#"
+                onclick="scrollToSection('services')"
+                >Layanan</a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="nav-link inline-block py-2 px-4 text-white lg:text-white font-semibold no-underline hover:text-yellow-300 transition-colors duration-300"
+                href="#"
+                onclick="scrollToSection('news')"
+                >Berita</a
+              >
+            </li>
+          </ul>
+          <button
+            id="navAction"
+            class="mx-auto lg:mx-0 btn-primary hover:underline text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-3 px-6 shadow-lg opacity-90 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            onclick="window.open('http://10.9.1.47/atlas/public_html/ugmfw-public/index.php/ugmfw/signin/signin_proses', '_blank')"
+          >
+            Login ATLAS
+          </button>
+        </div>
+      </div>
+      <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
+    </nav>
+    <!--Hero-->
+    <div
+      class="hero-section pt-24 pb-16 relative overflow-hidden"
+      style="padding-top: 100px"
+    >
+      <!-- Background elements removed to fix image display -->
+
+      <div class="container px-6 mx-auto relative z-10">
+        <div class="flex flex-wrap items-center">
+          <!--Left Col-->
+          <div
+            class="w-full lg:w-1/2 flex flex-col justify-center items-start text-center lg:text-left mb-12 lg:mb-0"
+          >
+            <p
+              class="uppercase tracking-wide text-sm font-medium opacity-90 mb-4 animate-fade-in-up delay-100"
+            >
+              Innovative Digital Technology Integration
+            </p>
+            <h1
+              class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-left delay-200"
+            >
+              Smart Digital Faculty<br />
+              <span class="text-yellow-300 typewriter">Geography UGM</span>
+            </h1>
+            <p
+              class="text-lg md:text-xl lg:text-2xl leading-relaxed mb-8 opacity-90 max-w-lg animate-fade-in-up delay-400"
+            >
+              ATLAS serves as a comprehensive Application Service Platform for
+              Digital Services. Streamline your academic and administrative
+              processes with our integrated solutions.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-600"
+            >
+              <a
+                href="http://10.9.1.47/atlas/public_html/ugmfw-public/index.php/ugmfw/signin/signin_proses"
+                class="btn-primary inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:no-underline group"
+              >
+                <svg
+                  class="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                  />
+                </svg>
+                Login to ATLAS
+              </a>
+              <button
+                class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-800 transition-all duration-300 group"
+                onclick="scrollToSection('services')"
+              >
+                <span class="group-hover:mr-2 transition-all">Learn More</span>
+                <svg
+                  class="w-5 h-5 inline group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!--Right Col-->
+          <div
+            class="w-full lg:w-1/2 flex justify-center lg:justify-end animate-fade-in-right delay-300"
+          >
+            <div class="relative">
+              <!-- Hero Image -->
+              <div
+                class="hero-image w-full max-w-lg lg:max-w-xl xl:max-w-2xl relative"
+              >
+                <img
+                  src="hero.png"
+                  alt="ATLAS Digital Services Platform"
+                  class="w-full h-auto rounded-2xl shadow-2xl object-contain border-4 border-white/20"
+                  style="
+                    opacity: 1;
+                    transition: opacity 0.3s ease;
+                    max-height: 450px;
+                  "
+                  onload="this.style.opacity='1'; this.nextElementSibling.style.display='none';"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <!-- Fallback placeholder if hero-illustration.png doesn't exist -->
+                <div
+                  class="w-full h-80 lg:h-96 bg-gradient-to-br from-white/20 to-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20"
+                  style="display: none"
+                >
+                  <div class="text-center">
+                    <svg
+                      class="w-24 h-24 mx-auto mb-4 text-white/70"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      />
+                    </svg>
+                    <p class="text-white/70 font-semibold text-lg">ATLAS</p>
+                    <p class="text-white/50 text-sm mt-2">
+                      Digital Services Platform
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative -mt-8 lg:-mt-16">
+      <svg
+        viewBox="0 0 1428 174"
+        version="1.1"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g
+            transform="translate(-2.000000, 44.000000)"
+            fill="#FFFFFF"
+            fill-rule="nonzero"
+          >
+            <path
+              d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496"
+              opacity="0.100000001"
+            ></path>
+            <path
+              d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
+              opacity="0.100000001"
+            ></path>
+            <path
+              d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z"
+              id="Path-4"
+              opacity="0.200000003"
+            ></path>
+          </g>
+          <g
+            transform="translate(-4.000000, 76.000000)"
+            fill="#FFFFFF"
+            fill-rule="nonzero"
+          >
+            <path
+              d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 animate-fade-in-up"
+          >
+            Layanan Digital <span class="text-ugm-primary">ATLAS</span>
+          </h2>
+          <p
+            class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up delay-200"
+          >
+            Platform terpadu untuk mendukung kegiatan akademik dan administratif
+            Fakultas Geografi UGM dengan teknologi digital terdepan
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <!-- Service Item 1 -->
+          <div class="text-center animate-fade-in-up delay-100">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Portal Akademik
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Akses mudah ke informasi akademik, jadwal kuliah, nilai, dan
+              sistem pembelajaran online terintegrasi
+            </p>
+          </div>
+
+          <!-- Service Item 2 -->
+          <div class="text-center animate-fade-in-up delay-200">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Administrasi Digital
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Layanan administrasi mahasiswa, pengajuan surat, dan proses
+              birokrasi yang dipermudah secara digital
+            </p>
+          </div>
+
+          <!-- Service Item 3 -->
+          <div class="text-center animate-fade-in-up delay-300">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Penelitian & Riset
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Platform untuk mengelola proyek penelitian, publikasi, dan
+              kolaborasi riset dengan teknologi GIS terkini
+            </p>
+          </div>
+
+          <!-- Service Item 4 -->
+          <div class="text-center animate-fade-in-up delay-400">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Laboratorium Virtual
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Akses ke perangkat lunak geografi, simulasi, dan tools analisis
+              spasial untuk pembelajaran praktis
+            </p>
+          </div>
+
+          <!-- Service Item 5 -->
+          <div class="text-center animate-fade-in-up delay-500">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Komunitas & Kolaborasi
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Ruang digital untuk berinteraksi, berbagi knowledge, dan
+              berkolaborasi antar civitas akademika
+            </p>
+          </div>
+
+          <!-- Service Item 6 -->
+          <div class="text-center animate-fade-in-up delay-600">
+            <div class="text-ugm-primary mb-4">
+              <svg
+                class="w-12 h-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Analytics & Reporting
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Dashboard analytics untuk monitoring progress akademik dan
+              pelaporan data geospasial secara real-time
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-20 gradient relative overflow-hidden">
+      <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in-up"
+          >
+            Fakultas Geografi dalam <span class="text-yellow-300">Angka</span>
+          </h2>
+          <p
+            class="text-xl text-white opacity-90 max-w-3xl mx-auto animate-fade-in-up delay-200"
+          >
+            Prestasi dan pencapaian yang membanggakan dalam pendidikan geografi
+            dan sains kebumian
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Stat 1 -->
+          <div class="text-center animate-fade-in-up delay-100">
+            <div class="stat-number" data-target="2500">0</div>
+            <p class="text-xl font-semibold text-white mb-2">Mahasiswa Aktif</p>
+            <p class="text-white opacity-80">
+              Dari berbagai program studi geografi
+            </p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="text-center animate-fade-in-up delay-200">
+            <div class="stat-number" data-target="85">0</div>
+            <p class="text-xl font-semibold text-white mb-2">
+              Dosen & Tenaga Ahli
+            </p>
+            <p class="text-white opacity-80">Profesional berpengalaman</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="text-center animate-fade-in-up delay-300">
+            <div class="stat-number" data-target="12">0</div>
+            <p class="text-xl font-semibold text-white mb-2">Program Studi</p>
+            <p class="text-white opacity-80">S1, S2, dan S3 Geografi</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div class="text-center animate-fade-in-up delay-400">
+            <div class="stat-number" data-target="150">0</div>
+            <p class="text-xl font-semibold text-white mb-2">
+              Penelitian Aktif
+            </p>
+            <p class="text-white opacity-80">Proyek riset berkelanjutan</p>
+          </div>
+        </div>
+
+        <!-- Achievement Badges -->
+        <div class="mt-16 flex flex-wrap justify-center gap-8">
+          <div
+            class="flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3 animate-fade-in-up delay-500"
+          >
+            <svg
+              class="w-8 h-8 text-yellow-300 mr-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+              />
+            </svg>
+            <span class="text-white font-semibold">Akreditasi A</span>
+          </div>
+          <div
+            class="flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3 animate-fade-in-up delay-600"
+          >
+            <svg
+              class="w-8 h-8 text-yellow-300 mr-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="text-white font-semibold">ISO 9001:2015</span>
+          </div>
+          <div
+            class="flex items-center bg-white bg-opacity-20 rounded-full px-6 py-3 animate-fade-in-up delay-700"
+          >
+            <svg
+              class="w-8 h-8 text-yellow-300 mr-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-semibold">QS Ranking Top 500</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News & Announcements Section -->
+    <section id="news" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 animate-fade-in-up"
+          >
+            Berita & <span class="text-ugm-primary">Pengumuman</span>
+          </h2>
+          <p
+            class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up delay-200"
+          >
+            Update terkini seputar kegiatan akademik, penelitian, dan prestasi
+            Fakultas Geografi UGM
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Featured News -->
+          <div class="mb-8 pb-8 border-b border-gray-200 animate-fade-in-left">
+            <span
+              class="bg-ugm-primary text-white px-3 py-1 rounded text-sm font-semibold"
+              >FEATURED</span
+            >
+            <h3 class="text-2xl font-bold text-gray-800 mt-3 mb-2">
+              Peluncuran Program Studi Geoinformatika Terbaru
+            </h3>
+            <p class="text-sm text-gray-500 mb-3">15 September 2024</p>
+            <p class="text-gray-600 leading-relaxed">
+              Fakultas Geografi UGM dengan bangga memperkenalkan program studi
+              Geoinformatika yang dirancang untuk memenuhi kebutuhan industri
+              digital dan teknologi geospasial masa depan.
+            </p>
+            <a
+              href="#"
+              class="mt-3 inline-block text-ugm-primary font-semibold hover:underline"
+            >
+              Baca Selengkapnya →
+            </a>
+          </div>
+
+          <!-- News List -->
+          <div class="space-y-6">
+            <div
+              class="pb-4 border-b border-gray-100 animate-fade-in-right delay-100"
+            >
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">
+                Seminar Nasional GIS 2024
+              </h4>
+              <p class="text-gray-600 text-sm mb-2">
+                Pendaftaran dibuka untuk seminar nasional teknologi GIS dan
+                remote sensing terbesar di Indonesia.
+              </p>
+              <span class="text-xs text-gray-500">12 September 2024</span>
+            </div>
+
+            <div
+              class="pb-4 border-b border-gray-100 animate-fade-in-right delay-200"
+            >
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">
+                Mahasiswa Geografi Raih Prestasi Internasional
+              </h4>
+              <p class="text-gray-600 text-sm mb-2">
+                Tim riset mahasiswa berhasil meraih juara dalam kompetisi
+                pemetaan internasional.
+              </p>
+              <span class="text-xs text-gray-500">10 September 2024</span>
+            </div>
+
+            <div class="pb-4 animate-fade-in-right delay-300">
+              <h4 class="text-lg font-semibold text-gray-800 mb-2">
+                Panduan Penggunaan Platform ATLAS
+              </h4>
+              <p class="text-gray-600 text-sm mb-2">
+                Tutorial lengkap menggunakan platform ATLAS untuk mahasiswa dan
+                dosen.
+              </p>
+              <span class="text-xs text-gray-500">8 September 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex flex-wrap justify-center gap-8 mt-12">
+          <div class="text-center animate-fade-in-up delay-100">
+            <div class="text-ugm-primary mb-3">
+              <svg
+                class="w-8 h-8 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4h3a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1V8a1 1 0 011-1h3z"
+                />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-800 mb-2">Kalender Akademik</h4>
+            <button
+              class="text-ugm-primary text-sm hover:underline"
+              onclick="showCalendarInfo()"
+            >
+              Lihat Kalender →
+            </button>
+          </div>
+
+          <div class="text-center animate-fade-in-up delay-200">
+            <div class="text-yellow-600 mb-3">
+              <svg
+                class="w-8 h-8 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-800 mb-2">Pendaftaran</h4>
+            <a href="#" class="text-yellow-600 text-sm hover:underline">
+              Info Pendaftaran →
+            </a>
+          </div>
+
+          <div class="text-center animate-fade-in-up delay-300">
+            <div class="text-green-600 mb-3">
+              <svg
+                class="w-8 h-8 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-gray-800 mb-2">Dukungan IT</h4>
+            <a href="#" class="text-green-600 text-sm hover:underline">
+              Hubungi Support →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--
+    <section class="container mx-auto text-center py-6 mb-12">
+      <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
+        Call to Action
+      </h2>
+      <div class="w-full mb-4">
+        <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+      </div>
+      <h3 class="my-4 text-3xl leading-tight">
+        Main Hero Message to sell yourself!
+      </h3>
+      <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+        Action!
+      </button>
+    </section>
+  -->
+    <!--Footer-->
+    <footer class="bg-white border-t-2 border-gray-100">
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="lg:col-span-2">
+            <a
+              class="flex items-center text-ugm-primary no-underline hover:no-underline font-bold text-2xl mb-4"
+              href="#"
+            >
+              <svg
+                class="h-8 w-8 fill-current mr-3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512.005 512.005"
+              >
+                <rect
+                  fill="currentColor"
+                  x="16.539"
+                  y="425.626"
+                  width="479.767"
+                  height="50.502"
+                />
+                <path
+                  class="plane-take-off"
+                  d="M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z"
+                />
+              </svg>
+              ATLAS
+            </a>
+            <p class="text-gray-600 leading-relaxed mb-4 max-w-md">
+              Smart Digital Faculty Geography UGM - Your comprehensive platform
+              for academic and administrative digital services. Streamlining
+              processes for a more efficient educational experience.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-ugm-primary transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-ugm-primary transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-ugm-primary transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.346-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-ugm-primary font-semibold text-lg mb-4">
+              Quick Links
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="https://ugm.ac.id"
+                  class="text-gray-600 hover:text-ugm-primary transition-colors"
+                  >About UGM</a
+                >
+              </li>
+              <li>
+                <a
+                  href="http://akademik.ugm.ac.id"
+                  class="text-gray-600 hover:text-ugm-primary transition-colors"
+                  >Academic Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="http://lib.ugm.ac.id"
+                  class="text-gray-600 hover:text-ugm-primary transition-colors"
+                  >Library</a
+                >
+              </li>
+              <li>
+                <a
+                  href="http://lppm.ugm.ac.id"
+                  class="text-gray-600 hover:text-ugm-primary transition-colors"
+                  >Research</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-ugm-primary font-semibold text-lg mb-4">
+              Contact Info
+            </h4>
+            <div class="space-y-3 text-gray-600">
+              <div class="flex items-start">
+                <svg
+                  class="w-5 h-5 mr-2 mt-1 text-ugm-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span class="text-sm"
+                  >Faculty of Geography<br />Universitas Gadjah Mada<br />Yogyakarta,
+                  Indonesia</span
+                >
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 mr-2 text-ugm-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <span class="text-sm">atlas@ugm.ac.id</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div
+          class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; 2024 ATLAS - Faculty of Geography, Universitas Gadjah Mada.
+            All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-ugm-primary transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-ugm-primary transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-ugm-primary transition-colors"
+              >Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery if you need it
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  -->
+    <script>
+      // Sticky navigation with transparency and scroll effects
+      document.addEventListener("scroll", function () {
+        const header = document.getElementById("header");
+        const scrollpos = window.scrollY;
+
+        if (scrollpos > 10) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+
+    <script>
+      // Professional Interactive Features & Animations
+      document.addEventListener("DOMContentLoaded", function () {
+        const header = document.getElementById("header");
+        const body = document.body;
+
+        function adjustBodyOffset() {
+          const headerHeight = header ? header.offsetHeight : 0;
+          body.style.paddingTop = `${headerHeight}px`;
+        }
+
+        adjustBodyOffset();
+        window.addEventListener("resize", adjustBodyOffset);
+        window.addEventListener("load", adjustBodyOffset);
+
+        const heroImgWrapper = document.querySelector(".hero-image");
+        const heroImg = heroImgWrapper
+          ? heroImgWrapper.querySelector("img")
+          : null;
+        const heroFallback = heroImg ? heroImg.nextElementSibling : null;
+
+        function ensureHeroVisibility() {
+          if (!heroImg) return;
+
+          if (heroImg.complete && heroImg.naturalWidth === 0) {
+            heroImg.style.display = "none";
+            if (heroFallback) heroFallback.style.display = "flex";
+          } else if (heroImg.complete) {
+            heroImg.style.display = "block";
+            heroImg.style.opacity = "1";
+            if (heroFallback) heroFallback.style.display = "none";
+          }
+        }
+
+        ensureHeroVisibility();
+        if (heroImg) {
+          heroImg.addEventListener("load", ensureHeroVisibility);
+          heroImg.addEventListener("error", ensureHeroVisibility);
+        }
+
+        const topNavToggle = document.getElementById("top-nav-toggle");
+        const topNavMenu = document.getElementById("top-nav-menu");
+        const navMenuDiv = document.getElementById("nav-content");
+        const navMenu = document.getElementById("nav-toggle");
+
+        // Top navigation mobile toggle
+        if (topNavToggle && topNavMenu) {
+          topNavToggle.addEventListener("click", function (e) {
+            e.stopPropagation();
+            topNavMenu.classList.toggle("show");
+          });
+        }
+
+        // Main navigation toggle (existing functionality)
+        if (navMenu && navMenuDiv) {
+          document.onclick = function (e) {
+            var target = (e && e.target) || (event && event.srcElement);
+
+            // Handle main nav menu
+            if (!checkParent(target, navMenuDiv)) {
+              if (checkParent(target, navMenu)) {
+                if (navMenuDiv.classList.contains("hidden")) {
+                  navMenuDiv.classList.remove("hidden");
+                } else {
+                  navMenuDiv.classList.add("hidden");
+                }
+              } else {
+                navMenuDiv.classList.add("hidden");
+              }
+            }
+          };
+        }
+
+        function checkParent(t, elm) {
+          if (!t || !elm) return false;
+          while (t.parentNode) {
+            if (t == elm) {
+              return true;
+            }
+            t = t.parentNode;
+          }
+          return false;
+        }
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document
+          .querySelectorAll(
+            ".animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-fade-in"
+          )
+          .forEach((el) => {
+            observer.observe(el);
+          });
+
+        // Counter Animation
+        function animateCounter(element, target, duration = 2000) {
+          let start = 0;
+          const increment = target / (duration / 16);
+
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              start = target;
+              clearInterval(timer);
+            }
+            element.textContent = Math.floor(start);
+          }, 16);
+        }
+
+        // Statistics Counter Animation
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = parseInt(entry.target.dataset.target);
+                animateCounter(entry.target, target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        document.querySelectorAll(".stat-number").forEach((stat) => {
+          statsObserver.observe(stat);
+        });
+
+        // Parallax effects removed to fix image display issues
+
+        // Smooth scroll for anchor links
+        window.scrollToSection = function (sectionId) {
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Enhanced loading animation for images
+        document.querySelectorAll("img").forEach((img) => {
+          img.addEventListener("load", function () {
+            this.style.opacity = "1";
+            this.style.transform = "scale(1)";
+          });
+
+          // Add initial styles for loading animation
+          img.style.opacity = "0";
+          img.style.transform = "scale(0.9)";
+          img.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        });
+
+        // Dynamic Typewriter Effect for Hero Title
+        function typeWriter(element, text, speed = 100) {
+          let i = 0;
+          element.innerHTML = "";
+
+          function type() {
+            if (i < text.length) {
+              element.innerHTML += text.charAt(i);
+              i++;
+              setTimeout(type, speed);
+            }
+          }
+          type();
+        }
+
+        // Initialize typewriter effect
+        setTimeout(() => {
+          const typewriterElement = document.querySelector(".typewriter");
+          if (typewriterElement) {
+            typeWriter(typewriterElement, "Geography UGM", 150);
+          }
+        }, 1000);
+
+        // Simplified hover effects - handled by CSS now
+        console.log(
+          "✨ Simplified layout loaded - reduced container complexity"
+        );
+
+        // Page Loading Animation - Modified to be less intrusive
+        window.addEventListener("load", function () {
+          // Remove any loading overlay if it exists
+          const loadingOverlay = document.querySelector(".loading-overlay");
+          if (loadingOverlay) {
+            loadingOverlay.style.opacity = "0";
+            setTimeout(() => loadingOverlay.remove(), 300);
+          }
+
+          // Ensure body is fully visible
+          document.body.style.opacity = "1";
+          document.body.style.transform = "translateY(0)";
+        });
+
+        // Minimal initial loading styles - don't hide the entire body
+        document.body.style.opacity = "1"; // Changed from 0 to 1
+        document.body.style.transform = "translateY(0)"; // Changed from translateY(20px)
+        document.body.style.transition =
+          "opacity 0.3s ease, transform 0.3s ease";
+
+        // Scroll-based animations trigger
+        let scrollTimeout;
+        window.addEventListener("scroll", function () {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(function () {
+            // Add any scroll-based animations here
+            const scrolled = window.scrollY;
+            const header = document.getElementById("header");
+
+            if (scrolled > 50) {
+              header.style.backdropFilter = "blur(10px)";
+              header.style.backgroundColor = "rgba(42, 157, 143, 0.95)";
+              header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+            } else {
+              header.style.backdropFilter = "none";
+              header.style.backgroundColor = "transparent";
+              header.style.boxShadow = "none";
+            }
+          }, 10);
+        });
+
+        console.log("🎉 ATLAS Interactive Features Loaded Successfully!");
+      });
+
+      // Calendar function to prevent blank/error page
+      function showCalendarInfo() {
+        alert(
+          "Kalender Akademik 2024/2025\n\nFitur ini sedang dalam pengembangan.\nUntuk informasi jadwal akademik terkini, silakan kunjungi:\n\n• Portal Akademika: http://akademik.ugm.ac.id\n• Website Fakultas Geografi UGM\n• Atau hubungi bagian akademik fakultas"
+        );
+      }
+
+      // Smooth scrolling function
+      function scrollToSection(sectionId) {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
